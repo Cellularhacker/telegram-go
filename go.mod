@@ -1,12 +1,12 @@
 module github.com/Cellularhacker/telegram-go
 
-go 1.22.5
+go 1.22.6
 
 require (
 	github.com/Cellularhacker/core-go v1.0.1
 	github.com/Cellularhacker/logger v1.0.2
 	github.com/joho/godotenv v1.5.1
-	gopkg.in/telebot.v3 v3.3.7
+	gopkg.in/telebot.v3 v3.3.8
 )
 
 require (
