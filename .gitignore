@@ -15,11 +15,20 @@
 *.out
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
+src/github.com/
+src/golang.org/
+src/gopkg.in/
 
 # Go workspace file
 go.work
 go.work.sum
 
-# env file
-.env
+# MARK
+main
+telegram
+.vscode/
+.vscode
+.idea/
+.env*
+.DS_Store
