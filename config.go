@@ -6,8 +6,8 @@ import (
 	"time"
 )
 
-var to Chat
-var toMonitor Chat
+var toNormal NormalChat
+var toMonitor MonitorChat
 
 var bot *tb.Bot
 
@@ -17,11 +17,6 @@ var (
 	accessToken       = ""
 	serverAndNodeName = ""
 )
-
-func init() {
-	to = Chat{}
-	toMonitor = Chat{}
-}
 
 func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorChatID ...string) {
 	// MARK: Applying environments
@@ -35,7 +30,6 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 	if ChatID == "" {
 		logger.L.Fatalf("'ChatID' missing.")
 	} else {
-		to.SetID(ChatID)
 		chatID = ChatID
 	}
 
@@ -46,7 +40,6 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 	} else {
 		monitorChatID = MonitorChatID[0]
 	}
-	toMonitor.SetID(monitorChatID)
 
 	if AccessToken == "" {
 		logger.L.Fatalf("'AccessToken' missing.")
@@ -68,9 +61,9 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 //
 // MARK: Utils
 
-func GetNormal() Chat {
-	return to
+func GetNormal() tb.Recipient {
+	return toNormal
 }
-func GetMonitor() Chat {
+func GetMonitor() tb.Recipient {
 	return toMonitor
 }

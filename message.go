@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/Cellularhacker/core-go"
 	"github.com/Cellularhacker/logger"
+	tb "gopkg.in/telebot.v3"
 	"time"
 )
 
@@ -11,15 +12,17 @@ func getToken() string {
 	return accessToken
 }
 
-func SendMessage(message string, chat ...Chat) {
+func SendMessage(message string, chat ...tb.Recipient) {
 	SendMessageAt(message, getNow(), chat...)
 }
 
-func SendMessageAt(message string, at time.Time, chat ...Chat) {
+func SendMessageAt(message string, at time.Time, chat ...tb.Recipient) {
 	if !core.IsProductionMode() || !enabled {
 		return
 	}
-	toChat := to
+	var toChat tb.Recipient
+	toChat = GetNormal()
+
 	if len(chat) > 0 {
 		toChat = chat[0]
 	}
