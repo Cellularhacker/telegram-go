@@ -1,76 +1,55 @@
 package telegram
 
 import (
-	"fmt"
 	"github.com/Cellularhacker/logger"
-	"github.com/joho/godotenv"
 	tb "gopkg.in/telebot.v3"
-	"os"
 	"time"
 )
 
+var bot *tb.Bot
+
 var (
-	chatID        = ""
-	monitorChatID = ""
-	accessToken   = ""
+	chatID            = ""
+	monitorChatID     = ""
+	accessToken       = ""
+	serverAndNodeName = ""
 )
 
-var to *Chat
-var toMonitor *Chat
-var enabled = false
-
-type Chat struct {
-	id string
-}
-
-func (c Chat) Recipient() string {
-	return c.id
-}
-func (c Chat) SetID(id string) {
-	c.id = id
-}
-func (c Chat) String() string {
-	return fmt.Sprintf("%s", c.id)
-}
-
-func init() {
-	// MARK: <START>Initializing Variables
-	err := godotenv.Load()
-	if err != nil {
-		logger.Fatal("Error loading .env file")
-	} else {
-		logger.Info("Loaded environments from env file")
-	}
-	// MARK: <EMD>Initializing Variables
-
+func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorChatID ...string) {
 	// MARK: Applying environments
-	chatID = os.Getenv(keyEnvChatID)
-	monitorChatID = os.Getenv(keyEnvMonitorChatID)
-	accessToken = os.Getenv(keyEnvAccessToken)
 
 	logger.L.Info("Initializing telegram bot..")
-	if chatID == "" {
+	serverAndNodeName = ServerAndNodeName
+	if len(ServerAndNodeName) <= 0 {
+		logger.L.Fatal("ServerAndNodeName is empty")
+	}
+
+	if ChatID == "" {
 		logger.L.Fatalf("'%s' missing.", keyEnvChatID)
 	} else {
 		to = &Chat{}
-		to.SetID(chatID)
+		to.SetID(ChatID)
+		chatID = ChatID
 	}
 
-	if monitorChatID == "" {
+	if len(MonitorChatID) <= 0 {
 		// MARK: if monitorChatID is not specified, it will send as same as chatID
 		logger.L.Warnf("'%s' missing. Default admin messages also send to the normal chat.", keyEnvMonitorChatID)
 		toMonitor = &Chat{}
 		toMonitor.SetID(chatID)
+		monitorChatID = chatID
 	} else {
 		toMonitor = &Chat{}
-		toMonitor.SetID(monitorChatID)
+		toMonitor.SetID(MonitorChatID[0])
+		monitorChatID = MonitorChatID[0]
 	}
 
 	if accessToken == "" {
 		logger.L.Fatalf("%s missing.", keyEnvAccessToken)
 	}
+	accessToken = AccessToken
 
-	bot, err = tb.NewBot(tb.Settings{
+	tbBot, err := tb.NewBot(tb.Settings{
 		Token:  getToken(),
 		Poller: &tb.LongPoller{Timeout: 5 * time.Second},
 	})
@@ -78,6 +57,7 @@ func init() {
 		logger.L.Fatal(err.Error(), "func", "Init()", "extra", "tb.NewBot()")
 	}
 
+	bot = tbBot
 	enabled = true
 }
 
