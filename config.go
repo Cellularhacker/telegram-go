@@ -6,6 +6,9 @@ import (
 	"time"
 )
 
+var to Chat
+var toMonitor Chat
+
 var bot *tb.Bot
 
 var (
@@ -14,6 +17,11 @@ var (
 	accessToken       = ""
 	serverAndNodeName = ""
 )
+
+func init() {
+	to = Chat{}
+	toMonitor = Chat{}
+}
 
 func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorChatID ...string) {
 	// MARK: Applying environments
@@ -27,7 +35,6 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 	if ChatID == "" {
 		logger.L.Fatalf("'ChatID' missing.")
 	} else {
-		to = &Chat{}
 		to.SetID(ChatID)
 		chatID = ChatID
 	}
@@ -35,14 +42,11 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 	if len(MonitorChatID) <= 0 {
 		// MARK: if monitorChatID is not specified, it will send as same as chatID
 		logger.L.Warnf("'MonitorChatID' missing. Default admin messages also send to the normal chat.")
-		toMonitor = &Chat{}
 		monitorChatID = chatID
-		toMonitor.SetID(monitorChatID)
 	} else {
-		toMonitor = &Chat{}
-		toMonitor.SetID(MonitorChatID[0])
 		monitorChatID = MonitorChatID[0]
 	}
+	toMonitor.SetID(monitorChatID)
 
 	if AccessToken == "" {
 		logger.L.Fatalf("'AccessToken' missing.")
@@ -64,9 +68,9 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 //
 // MARK: Utils
 
-func GetNormal() *Chat {
+func GetNormal() Chat {
 	return to
 }
-func GetMonitor() *Chat {
+func GetMonitor() Chat {
 	return toMonitor
 }

@@ -11,11 +11,11 @@ func getToken() string {
 	return accessToken
 }
 
-func SendMessage(message string, chat ...*Chat) {
+func SendMessage(message string, chat ...Chat) {
 	SendMessageAt(message, getNow(), chat...)
 }
 
-func SendMessageAt(message string, at time.Time, chat ...*Chat) {
+func SendMessageAt(message string, at time.Time, chat ...Chat) {
 	if !core.IsProductionMode() || !enabled {
 		return
 	}
@@ -26,7 +26,7 @@ func SendMessageAt(message string, at time.Time, chat ...*Chat) {
 
 	msg := fmt.Sprintf("<%s> %s\n%s", serverAndNodeName, message, at.Format(time.RFC3339))
 	logger.L.Debug("Sending telegram Message...")
-	_, err := bot.Send(*toChat, msg)
+	_, err := bot.Send(toChat, msg)
 	if err != nil {
 		logger.L.Errorw(err.Error(), "func", "SendMessageAt()", "extra", "bot.Send(to, msg)", "to", toChat, "msg", msg)
 		return
