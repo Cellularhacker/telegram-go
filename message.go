@@ -7,12 +7,6 @@ import (
 	"time"
 )
 
-const (
-	keyEnvChatID        = "TELEGRAM_CHAT_ID"
-	keyEnvMonitorChatID = "TELEGRAM_MONITOR_CHAT_ID"
-	keyEnvAccessToken   = "TELEGRAM_ACCESS_TOKEN"
-)
-
 func getToken() string {
 	return accessToken
 }
