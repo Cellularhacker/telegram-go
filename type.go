@@ -6,6 +6,11 @@ var to *Chat
 var toMonitor *Chat
 var enabled = false
 
+func init() {
+	to = &Chat{}
+	toMonitor = &Chat{}
+}
+
 type Chat struct {
 	id string
 }
