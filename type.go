@@ -1,19 +1,21 @@
 package telegram
 
-import "fmt"
+var (
+	enabled = false
 
-var enabled = false
+	nc = Chat(NormalChat{})
+	mc = Chat(MonitorChat{})
+)
 
 type Chat struct {
-	id string
 }
 
-func (c Chat) Recipient() string {
-	return c.id
+type NormalChat Chat
+type MonitorChat Chat
+
+func (nc NormalChat) Recipient() string {
+	return chatID
 }
-func (c Chat) SetID(id string) {
-	c.id = id
-}
-func (c Chat) String() string {
-	return fmt.Sprintf("%s", c.id)
+func (mc MonitorChat) Recipient() string {
+	return monitorChatID
 }

@@ -3,7 +3,7 @@ module github.com/Cellularhacker/telegram-go
 go 1.23.0
 
 require (
-	github.com/Cellularhacker/core-go v1.0.3
+	github.com/Cellularhacker/core-go v1.0.4
 	github.com/Cellularhacker/logger v1.0.3
 	gopkg.in/telebot.v3 v3.3.8
 )
