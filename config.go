@@ -36,8 +36,8 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 		// MARK: if monitorChatID is not specified, it will send as same as chatID
 		logger.L.Warnf("'MonitorChatID' missing. Default admin messages also send to the normal chat.")
 		toMonitor = &Chat{}
-		toMonitor.SetID(chatID)
 		monitorChatID = chatID
+		toMonitor.SetID(monitorChatID)
 	} else {
 		toMonitor = &Chat{}
 		toMonitor.SetID(MonitorChatID[0])

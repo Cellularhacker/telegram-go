@@ -36,17 +36,17 @@ func SendMessageAt(message string, at time.Time, chat ...*Chat) {
 
 func SendStarted(hostname string, localIP string, pubIP string) {
 	msg := fmt.Sprintf("Server started successfully\nHostname:%s\nLocal IP:%s\nPublic IP:%s\n", hostname, localIP, pubIP)
-	SendMessage(msg, toMonitor)
+	SendMessage(msg, GetMonitor())
 }
 
 func SendStopped(hostname string, localIP, pubIP string) {
 	msg := fmt.Sprintf("Server stopping normally\nHostname:%s\nLocal IP:%s\nPublic IP:%s", hostname, localIP, pubIP)
-	SendMessage(msg, toMonitor)
+	SendMessage(msg, GetMonitor())
 }
 
 func SendFailed(location string, err error) {
 	msg := fmt.Sprintf("[ERROR/%s]\n=> %s", location, err)
-	SendMessage(msg, toMonitor)
+	SendMessage(msg, GetMonitor())
 }
 
 func getNow() time.Time {
