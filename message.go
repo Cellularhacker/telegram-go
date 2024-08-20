@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/Cellularhacker/core-go"
 	"github.com/Cellularhacker/logger"
-	tb "gopkg.in/telebot.v3"
 	"time"
 )
 
@@ -17,8 +16,6 @@ const (
 func getToken() string {
 	return accessToken
 }
-
-var bot *tb.Bot
 
 func SendMessage(message string, chat ...*Chat) {
 	SendMessageAt(message, getNow(), chat...)
@@ -33,7 +30,7 @@ func SendMessageAt(message string, at time.Time, chat ...*Chat) {
 		toChat = chat[0]
 	}
 
-	msg := fmt.Sprintf("<ch-api> %s\n%s", message, at.Format(time.RFC3339))
+	msg := fmt.Sprintf("<%s> %s\n%s", serverAndNodeName, message, at.Format(time.RFC3339))
 	logger.L.Debug("Sending telegram Message...")
 	_, err := bot.Send(toChat, msg)
 	if err != nil {
