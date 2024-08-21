@@ -12,11 +12,11 @@ func getToken() string {
 	return accessToken
 }
 
-func SendMessage(message string, chat ...tb.Recipient) {
-	SendMessageAt(message, getNow(), chat...)
+func SendMessage(message string, silent bool, chat ...tb.Recipient) {
+	SendMessageAt(message, getNow(), silent, chat...)
 }
 
-func SendMessageAt(message string, at time.Time, chat ...tb.Recipient) {
+func SendMessageAt(message string, at time.Time, silent bool, chat ...tb.Recipient) {
 	if !core.IsProductionMode() || !enabled {
 		return
 	}
@@ -29,7 +29,10 @@ func SendMessageAt(message string, at time.Time, chat ...tb.Recipient) {
 
 	msg := fmt.Sprintf("<%s> %s\n%s", serverAndNodeName, message, at.Format(time.RFC3339))
 	logger.L.Debug("Sending telegram Message...")
-	_, err := bot.Send(toChat, msg)
+	opt := &tb.SendOptions{
+		DisableNotification: silent,
+	}
+	_, err := bot.Send(toChat, msg, opt)
 	if err != nil {
 		logger.L.Errorw(err.Error(), "func", "SendMessageAt()", "extra", "bot.Send(to, msg)", "to", toChat, "msg", msg)
 		return
@@ -39,17 +42,17 @@ func SendMessageAt(message string, at time.Time, chat ...tb.Recipient) {
 
 func SendStarted(hostname string, localIP string, pubIP string) {
 	msg := fmt.Sprintf("Server started successfully\nHostname:%s\nLocal IP:%s\nPublic IP:%s\n", hostname, localIP, pubIP)
-	SendMessage(msg, GetMonitor())
+	SendMessage(msg, false, GetMonitor())
 }
 
 func SendStopped(hostname string, localIP, pubIP string) {
 	msg := fmt.Sprintf("Server stopping normally\nHostname:%s\nLocal IP:%s\nPublic IP:%s", hostname, localIP, pubIP)
-	SendMessage(msg, GetMonitor())
+	SendMessage(msg, false, GetMonitor())
 }
 
 func SendFailed(location string, err error) {
 	msg := fmt.Sprintf("[ERROR/%s]\n=> %s", location, err)
-	SendMessage(msg, GetMonitor())
+	SendMessage(msg, false, GetMonitor())
 }
 
 func getNow() time.Time {
