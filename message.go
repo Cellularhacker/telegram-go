@@ -27,7 +27,7 @@ func SendMessageAt(message string, at time.Time, silent bool, chat ...tb.Recipie
 		toChat = chat[0]
 	}
 
-	msg := fmt.Sprintf("<%s> %s\n%s", serverAndNodeName, message, at.Format(time.RFC3339))
+	msg := fmt.Sprintf("<%s> %s\n%s", serverAndNodeName, message, at.Format(core.DateTimeFormatAddTimeZone))
 	logger.L.Debug("Sending telegram Message...")
 	opt := &tb.SendOptions{
 		DisableNotification: silent,

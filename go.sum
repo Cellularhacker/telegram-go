@@ -58,6 +58,8 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/Cellularhacker/core-go v1.0.4 h1:lJKO72QmQvJUw/JCM80WmvebK9GAfPMwbwjzKEV9kzw=
 github.com/Cellularhacker/core-go v1.0.4/go.mod h1:aICK5nYpfDkDkYXvyAKhDWwqaZI5VKd4EN/Ckox3ahU=
+github.com/Cellularhacker/core-go v1.0.5 h1:iCDIHJyPFdEtcD3vK59JX738qz7aLZnCvOfFt7caQts=
+github.com/Cellularhacker/core-go v1.0.5/go.mod h1:aICK5nYpfDkDkYXvyAKhDWwqaZI5VKd4EN/Ckox3ahU=
 github.com/Cellularhacker/logger v1.0.3 h1:RZkTMWUeIFQME7jCuRZS9jvUYBO/Y4MP5HDgZ+RTduQ=
 github.com/Cellularhacker/logger v1.0.3/go.mod h1:NvC5fM/fFWkT+MLgWXpMQhW4oHyZbVz631VRSi44g9o=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
