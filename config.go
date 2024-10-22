@@ -28,14 +28,14 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 	}
 
 	if ChatID == "" {
-		logger.L.Fatalf("'ChatID' missing.")
+		logger.Fatalf("'ChatID' missing.")
 	} else {
 		chatID = ChatID
 	}
 
 	if len(MonitorChatID) <= 0 {
 		// MARK: if monitorChatID is not specified, it will send as same as chatID
-		logger.L.Warnf("'MonitorChatID' missing. Default admin messages also send to the normal chat.")
+		logger.Warnf("'MonitorChatID' missing. Default admin messages also send to the normal chat.")
 		monitorChatID = chatID
 	} else {
 		monitorChatID = MonitorChatID[0]
@@ -51,7 +51,7 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 		Poller: &tb.LongPoller{Timeout: 5 * time.Second},
 	})
 	if err != nil {
-		logger.L.Fatal(err.Error(), "func", "Init()", "extra", "tb.NewBot()")
+		logger.Fatal(err.Error(), "func", "Init()", "extra", "tb.NewBot()")
 	}
 
 	bot = tbBot
