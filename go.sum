@@ -60,6 +60,8 @@ github.com/Cellularhacker/core-go v1.0.8 h1:0/q3QdhBiwvpgWKz/6I2+tgBFb+jUk9D8qec
 github.com/Cellularhacker/core-go v1.0.8/go.mod h1:IfdA8WUNp4tIx6OZ1Xl/0nyww4E6i68dpjA43G4rm34=
 github.com/Cellularhacker/logger-go v1.0.4 h1:zF4fjkrvKGOB3IOZ6+H7PIbqShXl3o+F/1iMONRhkAw=
 github.com/Cellularhacker/logger-go v1.0.4/go.mod h1:bC3QFDkIg9xsgXisy9Cjc3OTAvOG4VVbWSiS3SQUgLs=
+github.com/Cellularhacker/logger-go v1.0.5 h1:IE/hbMbaOKH55IcV1/BdRieWA7uWoWUBcnPlzMezJ68=
+github.com/Cellularhacker/logger-go v1.0.5/go.mod h1:m9JMWZTdl1H6Ax/WgzB8A1Kq5WM+QCcI/GjrCZ/lFko=
 github.com/DataDog/datadog-go v3.2.0+incompatible/go.mod h1:LButxg5PwREeZtORoXG3tL4fMGNddJ+vMq1mwgfaqoQ=
 github.com/OneOfOne/xxhash v1.2.2/go.mod h1:HSdplMjZKSmBqAxg5vPj2TmRDmfkzw+cTzAElWljhcU=
 github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc/go.mod h1:LOuyumcjzFXgccqObfd/Ljyb9UuFJ6TxHnclSeseNhc=

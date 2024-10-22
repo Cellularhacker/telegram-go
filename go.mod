@@ -4,7 +4,7 @@ go 1.23.2
 
 require (
 	github.com/Cellularhacker/core-go v1.0.8
-	github.com/Cellularhacker/logger-go v1.0.4
+	github.com/Cellularhacker/logger-go v1.0.5
 	gopkg.in/telebot.v3 v3.3.8
 )
 
