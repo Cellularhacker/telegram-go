@@ -4,12 +4,11 @@ go 1.23.2
 
 require (
 	github.com/Cellularhacker/core-go v1.0.8
-	github.com/Cellularhacker/logger v1.0.3
+	github.com/Cellularhacker/logger-go v1.0.4
 	gopkg.in/telebot.v3 v3.3.8
 )
 
 require (
-	github.com/Cellularhacker/logger-go v1.0.4 // indirect
 	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/sirupsen/logrus v1.9.3 // indirect

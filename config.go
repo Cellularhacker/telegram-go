@@ -1,7 +1,7 @@
 package telegram
 
 import (
-	"github.com/Cellularhacker/logger"
+	"github.com/Cellularhacker/logger-go"
 	tb "gopkg.in/telebot.v3"
 	"time"
 )
@@ -21,7 +21,7 @@ var (
 func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorChatID ...string) {
 	// MARK: Applying environments
 
-	logger.L.Info("Initializing telegram bot..")
+	logger.Info("Initializing telegram bot..")
 	serverAndNodeName = ServerAndNodeName
 	if len(ServerAndNodeName) <= 0 {
 		logger.L.Fatal("ServerAndNodeName is empty")

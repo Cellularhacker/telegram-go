@@ -3,7 +3,7 @@ package telegram
 import (
 	"fmt"
 	"github.com/Cellularhacker/core-go"
-	"github.com/Cellularhacker/logger"
+	"github.com/Cellularhacker/logger-go"
 	tb "gopkg.in/telebot.v3"
 	"time"
 )
