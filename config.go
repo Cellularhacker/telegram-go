@@ -1,7 +1,7 @@
 package telegram
 
 import (
-	"github.com/Cellularhacker/logger"
+	"github.com/Cellularhacker/logger-go"
 	tb "gopkg.in/telebot.v3"
 	"time"
 )
@@ -21,21 +21,21 @@ var (
 func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorChatID ...string) {
 	// MARK: Applying environments
 
-	logger.L.Info("Initializing telegram bot..")
+	logger.Info("Initializing telegram bot..")
 	serverAndNodeName = ServerAndNodeName
 	if len(ServerAndNodeName) <= 0 {
 		logger.L.Fatal("ServerAndNodeName is empty")
 	}
 
 	if ChatID == "" {
-		logger.L.Fatalf("'ChatID' missing.")
+		logger.Fatalf("'ChatID' missing.")
 	} else {
 		chatID = ChatID
 	}
 
 	if len(MonitorChatID) <= 0 {
 		// MARK: if monitorChatID is not specified, it will send as same as chatID
-		logger.L.Warnf("'MonitorChatID' missing. Default admin messages also send to the normal chat.")
+		logger.Warnf("'MonitorChatID' missing. Default admin messages also send to the normal chat.")
 		monitorChatID = chatID
 	} else {
 		monitorChatID = MonitorChatID[0]
@@ -51,7 +51,7 @@ func Init(ServerAndNodeName string, AccessToken string, ChatID string, MonitorCh
 		Poller: &tb.LongPoller{Timeout: 5 * time.Second},
 	})
 	if err != nil {
-		logger.L.Fatal(err.Error(), "func", "Init()", "extra", "tb.NewBot()")
+		logger.Fatal(err.Error(), "func", "Init()", "extra", "tb.NewBot()")
 	}
 
 	bot = tbBot
